@@ -9,10 +9,6 @@ FLAKE8      = $(POETRY) run flake8
 
 SRC = src
 
-.PHONY: all
-all: run shell test
-default: test run
-
 run:
 	$(FLASK) $(FLASK_FLAGS) run
 
