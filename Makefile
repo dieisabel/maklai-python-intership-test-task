@@ -10,7 +10,7 @@ FLAKE8      = $(POETRY) run flake8
 SRC = src
 
 run:
-	$(FLASK) $(FLASK_FLAGS) run
+	$(FLASK) $(FLASK_FLAGS) --debug run
 
 shell:
 	$(FLASK) $(FLASK_FLAGS) shell
