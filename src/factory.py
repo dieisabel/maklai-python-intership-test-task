@@ -1,8 +1,13 @@
+import logging
+from logging.config import dictConfig as configure_logging
+
 from flask import Flask
 
 
 def create_application():
     application = Flask(__name__)
+
+    configure_application(application)
 
     with application.app_context():
         register_blueprints(application)
@@ -11,6 +16,24 @@ def create_application():
             register_shellcontext(application)
 
     return application
+
+
+def configure_application(application):
+    configure_logging(
+        {
+            "version": 1,
+            "formatters": {
+                "default": {
+                    "format": "[%(asctime)s] %(levelname)s in %(module)s: %(message)s",
+                },
+            },
+        }
+    )
+
+    if application.debug:
+        application.logger.setLevel(logging.DEBUG)
+    else:
+        application.logger.setLevel(logging.ERROR)
 
 
 def register_blueprints(application):
