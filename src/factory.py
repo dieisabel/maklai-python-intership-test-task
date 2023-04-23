@@ -11,9 +11,7 @@ def create_application():
 
     with application.app_context():
         register_blueprints(application)
-
-        if application.debug:
-            register_shellcontext(application)
+        register_shellcontext(application)
 
     return application
 
@@ -37,7 +35,7 @@ def configure_application(application):
 
 
 def register_blueprints(application):
-    from controllers import blueprint
+    from api.controllers import blueprint
 
     application.register_blueprint(blueprint)
 
