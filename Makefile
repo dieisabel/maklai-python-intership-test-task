@@ -3,7 +3,7 @@ POETRY = poetry
 FLASK       = $(POETRY) run flask
 FLASK_FLAGS = --app $(FACTORY)
 PYTEST      = $(POETRY) run pytest
-FACTORY     = src/factory:create_application
+FACTORY     = src/core/factory:create_application
 BLACK       = $(POETRY) run black
 FLAKE8      = $(POETRY) run flake8
 

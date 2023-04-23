@@ -1,6 +1,6 @@
 import pytest
 
-from factory import create_application
+from core.factory import create_application
 
 
 @pytest.fixture()

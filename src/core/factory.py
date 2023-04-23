@@ -1,3 +1,5 @@
+import pathlib
+import sys
 import logging
 from logging.config import dictConfig as configure_logging
 
@@ -5,6 +7,8 @@ from flask import Flask
 
 
 def create_application():
+    append_project_path()
+
     application = Flask(__name__)
 
     configure_application(application)
@@ -45,3 +49,9 @@ def register_shellcontext(application):
         return {}
 
     application.shell_context_processor(shellcontext)
+
+
+def append_project_path():
+    PROJECT_DIR = pathlib.Path(__file__).resolve().parent.parent
+    if str(PROJECT_DIR) not in sys.path:
+        sys.path.append(str(PROJECT_DIR))
