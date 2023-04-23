@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.8.1"
 flask = "2.2.3"
 nltk = "3.8.1"
+marshmallow = "3.19.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "7.3.1"
