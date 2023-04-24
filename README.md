@@ -10,7 +10,7 @@
 
 A simple web-service that generates paraphrases from a given parse tree. Contains one endpoint `paraphrase`, that
 accepts two arguments: `tree (str)` and `limit (int)` and returns a json with paraphrases. In case of an error
-returns json with error message;
+returns json with error message.
 
 #### Technology stack
 
