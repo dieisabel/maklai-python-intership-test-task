@@ -58,7 +58,7 @@ def paraphrase(tree: Tree, limit: int) -> ty.List[Tree]:
             if counter == len(combinations):
                 permutations = generate_permutations(nps)
                 # The very first permutation is already in tree, so we skip it
-                permutations.pop(0)
+                reference = permutations.pop(0)
 
                 if len(permutations) > limit:
                     permutations = permutations[0:limit]
@@ -66,9 +66,9 @@ def paraphrase(tree: Tree, limit: int) -> ty.List[Tree]:
                 # Start applying permutations to a tree. First apply permutation, deep copy tree
                 # and reapply permutation again, so tree returns to its initial state
                 for permutation in permutations:
-                    swap(node, permutation)
+                    swap(node, reference, permutation)
                     trees.append(tree.copy(deep=True))
-                    swap(node, permutation)
+                    swap(node, permutation, reference)
                 return
 
         # Continue parsing whole tree using recursion
@@ -89,8 +89,13 @@ def is_leaf(node):
     return False
 
 
-def swap(node, permutation):
-    n1 = node[permutation[0]]
-    n2 = node[permutation[1]]
-    node[permutation[0]] = n2
-    node[permutation[1]] = n1
+def swap(node, reference, permutation):
+    nodes = []
+    for i in permutation:
+        # ! Deep copying nodes into list may be memory consuming
+        nodes.append(node[i].copy(deep=True))
+
+    n = 0
+    for r in reference:
+        node[r] = nodes[n]
+        n += 1
